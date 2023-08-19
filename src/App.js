@@ -1,41 +1,63 @@
-import './App.css';
-import { CurrentWeather } from './components/current-weather/current-weather';
-import { Search } from './components/search/search';
-import { WEATHER_API_URL , WEATHER_API_KEY } from './api';
-import { useState } from 'react';
-import { Forecast } from './components/forecast/forecast';
+import React from "react";
 
-function App() {
+import { Element } from "react-scroll";
 
-  const [ currentWeather , setCurrentWeather] = useState(null);
-  const [ foreCast , setForeCast] = useState(null)
+// import components
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Brands from "./components/Brands";
+import About from "./components/About";
+import Skills from "./components/Skills";
+import Portfolio from "./components/Portfolio";
+import Services from "./components/Services";
+import Testimonials from "./components/Testimonials";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import BackToTopButton from "./components/BackToTopButton";
+import { ToastContainer } from "react-toastify";
 
-  const hangleOnChange = (searchData) =>{
-    const [ lattitude , longitude] = searchData.value.split(" ")
-    const currentWeatherFetch = fetch(`${WEATHER_API_URL}/weather?lat=${lattitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&units=metric`)
-    const foreCastFetch = fetch(`${WEATHER_API_URL}/forecast?lat=${lattitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&units=metric`); // units for temp in celcius
-
-    Promise.all([currentWeatherFetch, foreCastFetch])
-    .then(async (resp)=>{
-      const weatherResp = await resp[0].json(); // resp[0] = currentWeatherFetch =>( return value );
-      const forecastResp = await resp[1].json() // resp[1] = foreCastFetch => (return value) ;
-
-      setCurrentWeather({ city: searchData.label, ...weatherResp});
-      setForeCast({ city: searchData.label, ...forecastResp});
-    })
-    .catch((error)=> console.error(error))
-
-  }
-  // console.log(currentWeather);
-  // console.log(foreCast)
-
+const App = () => {
   return (
-    <div className="container">
-    <Search onSearchChange={hangleOnChange}/>
-    { currentWeather && <CurrentWeather data={currentWeather}/> }
-    { foreCast && <Forecast  data={foreCast} />}    
+    <div>
+      <Header />
+      <Element name="home">
+        <Hero />
+      </Element>
+      <Brands />
+      <Element name="about">
+        <About />
+      </Element>
+      <Skills />
+      <Element name="portfolio">
+        <Portfolio />
+      </Element>
+      <Element name="services">
+        <Services />
+      </Element>
+      <Element name="testimonials">
+        <Testimonials />
+      </Element>
+      <Element name="contact">
+        <Contact />
+      </Element>
+      <Footer />
+      <BackToTopButton />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+
+      {/* <div style={{ height: "2000px" }}></div> */}
     </div>
   );
-}
+};
 
 export default App;
