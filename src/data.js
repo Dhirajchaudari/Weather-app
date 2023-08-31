@@ -23,6 +23,7 @@ import PromtopiaImg from './assets/img/projects/promto.png';
 import CryptoverseImg from './assets/img/projects/Cryptoverse.png';
 import EcommerceImg from './assets/img/projects/E-commerce.png';
 import WeatherImg from './assets/img/projects/Weather.png';
+import Sushiman from './assets/img/projects/sushiman.png'
 
 // skills images
 import SkillImg1 from './assets/img/skills/html5.png';
@@ -149,6 +150,15 @@ export const projectsData = [
     category: ReactJs,
     portfolioLink:'https://wild-gold-seagull-sari.cyclic.app/',
     gitHubLink:'https://github.com/Dhirajchaudari/e-commerce-app-2023'
+  },
+  {
+    id: '5',
+    image: Sushiman,
+    name: 'Sushiman',
+    about: "Elevating sushi through design: 🍣✨ Indulge in the art of CSS mastery showcased on our SushiMan website.",
+    category: HTMLJavascript,
+    portfolioLink:'https://dhirajchaudari.github.io/_Sushiman',
+    gitHubLink:'https://github.com/Dhirajchaudari/_Sushiman'
   }
 ];
 
